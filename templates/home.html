@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/plugins/bootstrap-3.4.1/css/bootstrap.min.css">
+    {% block css %} {% endblock %}
+</head>
+<body>
+
+{# 导航栏 #}
+<nav class="navbar navbar-default">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="">交易评估系统</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/login/">登录</a></li>
+                <li><a href="/register/">注册</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+<div>
+    {% block content %}
+        {# 其他页面逻辑下载这 #}
+    {% endblock %}
+</div>
+
+{#导入顺序要正确#}
+<script src="/static/plugins/jquery/jquery-3.6.0.min.js"></script>
+{% block js %} {% endblock %}
+<script src="/static/plugins/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

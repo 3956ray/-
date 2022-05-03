@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div style="margin-bottom: 10px">
+            {# target 新页面打开#}
+            <a class="btn btn-primary" href="/hospital/department/add">添加</a>
+            <div style="float: right">
+                <form method="get">
+                    <div style="width: 300px" class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search for..."
+                               value="{{ search_data }}">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </button>
+                        </span>
+                    </div><!-- /input-group -->
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                科室列表
+            </div>
+            {#          <div class="panel-body">#}
+            {#          </div>#}
+
+            <!-- Table -->
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>科室名称</th>
+                    <th>常用药品数量</th>
+                    <th>医疗设备数量</th>
+                    <th>患者数量</th>
+                    <th>所属医院</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for obj in list %}
+                    <tr>
+                        <td>{{ obj.id }}</td>
+                        <td>{{ obj.name }}</td>
+                        <td>{{ obj.drogsNumber }}</td>
+                        <td>{{ obj.devicesNumber }}</td>
+                        <td>{{ obj.patientNumber }}</td>
+                        <td>{{ obj.hospital }}</td>
+                        <td>
+                            <a class="btn btn-primary btn-xs" href="/hospital/department/{{ obj.id }}/edit/">编辑</a>
+                            <a class="btn btn-danger btn-xs" href="/hospital/department/delete/?nid={{ obj.id }}">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <ul class="pagination" style="float: left">
+                {{ page_string }}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

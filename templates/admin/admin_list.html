@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div style="margin-bottom: 10px" class="clearfix">
+            {# target 新页面打开#}
+            <a class="btn btn-primary" href="/manageadmin/add">添加</a>
+            <div style="float: right">
+                <form method="get">
+                    <div style="width: 300px" class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search for..."
+                               value="{{ search_data }}">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </button>
+                        </span>
+                    </div><!-- /input-group -->
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                管理员列表
+            </div>
+
+
+            <!-- Table -->
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>名称</th>
+                    <th>密码</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for obj in list %}
+                    <tr>
+                        <td>{{ obj.id }}</td>
+                        <td>{{ obj.name }}</td>
+                        <td>{{ obj.password }}</td>
+                        <td>
+                            <a class="btn btn-primary btn-xs" href="/manageadmin/{{ obj.id }}/edit/">编辑</a>
+                            <a class="btn btn-default btn-xs" href="/manageadmin/{{ obj.id }}/reset/">重置密码</a>
+                            <a class="btn btn-danger btn-xs" href="/manageadmin/delete/?nid={{ obj.id }}">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <nav aria-label="...">
+            <ul class="pagination" style="float: left">
+                {{ page_string }}
+            </ul>
+
+        </nav>
+    </div>
+{% endblock %}

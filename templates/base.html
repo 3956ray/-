@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/plugins/bootstrap-3.4.1/css/bootstrap.min.css">
+    {% block css %} {% endblock %}
+</head>
+<body>
+
+{# 导航栏 #}
+<nav class="navbar navbar-default">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/home/">交易评估系统</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/manageadmin/">管理员管理</a></li>
+                <li class="医院管理">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">医院<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/hospital/list">医院管理</a></li>
+                        <li><a href="/hospital/department/">科室管理</a></li>
+                        <li><a href="/hospital/patient/">患者管理</a></li>
+                        <li><a href="/hospital/patient/history/">患者病史</a></li>
+                        <li><a href="/hospital/department/drogs/list">药品管理</a></li>
+                        <li><a href="/hospital/department/devices/list/">设备管理</a></li>
+                    </ul>
+                </li>
+                <li class="保险公司管理">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">保险<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/insurance/list">保险公司管理</a></li>
+                        <li><a href="/insurance/insurance_provide/list">保险管理</a></li>
+                    </ul>
+                </li>
+                <li class="医药公司管理">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">医药<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/drogs_company/list">医药公司管理</a></li>
+                        <li><a href="/drogs_company/drogs_provide/list">药品管理</a></li>
+                    </ul>
+                </li>
+                <li class="医药设备管理">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">医疗设备<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/devices_company/list">医疗设备公司管理</a></li>
+                        <li><a href="/devices_company/devices_provide/list">设备管理</a></li>
+                    </ul>
+                </li>
+                <li><a href="/evaluate/">交易评估</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% block nav %}
+
+                {% endblock %}
+
+                {% if request.tracer %}
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">{{ request.tracer.name }}<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">个人资料</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/logout/">登出</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li><a href="/login/">登录</a></li>
+                    <li><a href="/register/">注册</a></li>
+                {% endif %}
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+<div>
+    {% block content %}
+        {# 其他页面逻辑下载这 #}
+    {% endblock %}
+</div>
+
+{#导入顺序要正确#}
+<script src="/static/plugins/jquery/jquery-3.6.0.min.js"></script>
+{% block js %} {% endblock %}
+<script src="/static/plugins/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
